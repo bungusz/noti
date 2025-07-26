@@ -213,7 +213,7 @@ return {
 			NewLabel.Parent = Container;
 			table.insert(InstructionObjects, {NewLabel, 0, false});
 			local ProgressBar = Instance.new("Frame")
-			ProgressBar.BackgroundColor3 = Color3.fromRGB(0, 255, 180) -- Accent color; tweak as needed
+			ProgressBar.BackgroundColor3 = Color3.fromRGB(0, 20, 200)
 			ProgressBar.BorderSizePixel = 0
 			ProgressBar.Size = UDim2.new(0, 0, 0, 2)
 			ProgressBar.Position = UDim2.new(0, 0, 1, -2)
