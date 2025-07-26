@@ -78,7 +78,8 @@ local function Update()
 		local NewValue = TweenService:GetValue(Delta, TweenStyle, TweenDirection);
 		local CurrentPos = Label.Position;
 		local PreviousBounds = CalculateBounds(PreviousObjects);
-		local TargetPos = UDim2.new(0, 0, 0, PreviousBounds.Y + (Padding * #PreviousObjects));
+		local TargetPos = UDim2.new(0, 0, 1, -((Object[1].Size.Y.Offset) + (Padding * #PreviousObjects)));
+                Label.AnchorPoint = Vector2.new(0, 1);
 		Label.Position = CurrentPos:Lerp(TargetPos, NewValue);
 		table.insert(PreviousObjects, Label);
 	end
