@@ -12,7 +12,7 @@ local Container = Instance.new("Frame");
 Container.Name = "Container";
 Container.AnchorPoint = Vector2.new(1, 1);
 Container.Position = UDim2.new(1, -20, 1, -20);
-Container.Size = UDim2.new(0, 200, 0.5, 0);
+Container.Size = UDim2.new(0, 300, 0.25, 0);
 Container.BackgroundTransparency = 1;
 Container.Parent = NotifGui;
 
@@ -213,7 +213,7 @@ return {
 			NewLabel.Parent = Container;
 			table.insert(InstructionObjects, {NewLabel, 0, false});
 			local ProgressBar = Instance.new("Frame")
-			ProgressBar.BackgroundColor3 = Color3.fromRGB(0, 20, 200)
+			ProgressBar.BackgroundColor3 = Color3.fromRGB(0, 50, 190)
 			ProgressBar.BorderSizePixel = 0
 			ProgressBar.Size = UDim2.new(0, 0, 0, 2)
 			ProgressBar.Position = UDim2.new(0, 0, 1, -2)
