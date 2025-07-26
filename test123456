@@ -64,26 +64,27 @@ local CachedObjects = {};
 
 local function Update()
 	local DeltaTime = tick() - LastTick;
-	local PreviousObjects = {};
-	for CurObj, Object in next, InstructionObjects do
+	local TotalHeight = 0;
+
+	for _, Object in ipairs(InstructionObjects) do
 		local Label, Delta, Done = Object[1], Object[2], Object[3];
-		if (not Done) then
-			if (Delta < TweenTime) then
-				Object[2] = math.clamp(Delta + DeltaTime, 0, 1);
-				Delta = Object[2];
-			else
+
+		if not Done then
+			Object[2] = math.clamp(Delta + DeltaTime, 0, TweenTime);
+			if Object[2] >= TweenTime then
 				Object[3] = true;
 			end
 		end
-		local NewValue = TweenService:GetValue(Delta, TweenStyle, TweenDirection);
-		local CurrentPos = Label.Position;
-		local PreviousBounds = CalculateBounds(PreviousObjects);
-		local TargetPos = UDim2.new(0, 0, 1, -((Padding * #PreviousObjects) + Object[1].Size.Y.Offset));
-		Object[1].AnchorPoint = Vector2.new(0, 1);
-		Label.Position = CurrentPos:Lerp(TargetPos, NewValue);
-		table.insert(PreviousObjects, Label);
+
+		local NewValue = TweenService:GetValue(Object[2], TweenStyle, TweenDirection);
+
+		Label.AnchorPoint = Vector2.new(0, 1);
+		local TargetPos = UDim2.new(0, 0, 1, -(TotalHeight + Padding));
+		Label.Position = Label.Position:Lerp(TargetPos, NewValue);
+
+		TotalHeight += Label.Size.Y.Offset + Padding;
 	end
-	CachedObjects = PreviousObjects;
+
 	LastTick = tick();
 end
 
